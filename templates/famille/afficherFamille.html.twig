@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Familles{% endblock %}
+ {% block monTitre %}Famille des {{ famille.libelle }}{% endblock %}
+{% block body %}
+
+    <h2 class="border-primary"><u>{{ famille.libelle | capitalize }}</u></h2>
+    <div class="mb-4">
+        {{ famille.description }}
+    </div>
+    <div class="row">
+        {% for animal   in famille.animaux %}
+            <div class="col-6">
+                <div class="row align-items-center ">
+                    <div class="col-12 col-md-6 col-lg-4 text-center">
+                        <a href="{{ path("afficher_animal",{'id':animal.id}) }}"><img class="img-fluid"
+                                                                                      src="{{ asset('images/' ~ animal.image) }}"
+                                                                                      alt="image d'un animal"></a>
+                    </div>
+                    <div class="col text-center">
+                        <h2>{{ animal.nom }}</h2>
+                        <div><p class="lead d-inline">Description:</p> {{ animal.description }}</div>
+                        <div><p class="lead d-inline">Poids: </p> {{ animal.poids }} kg</div>
+                        <div><p class="lead d-inline">Dangereux:</p>
+                            {% if animal.dangereux %}
+                                <span class="badge badge-danger text-uppercase">oui</span>
+                            {% else %}
+                                <span class="badge badge-success text-uppercase">non</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <hr class="border border-primary">
+
+{% endblock %}

@@ -20,4 +20,16 @@
                 "animaux" =>$animaux
             ] );
         }
+
+        /**
+         * @Route("/animal/{id}", name="afficher_animal")
+         * @param Animal $animal
+         * @return \Symfony\Component\HttpFoundation\Response
+         */
+        public function afficherAnimal( Animal $animal)
+        {
+            return $this -> render( 'animal/afficherAnimal.html.twig',[
+                "animal" =>$animal
+            ]);
+        }
     }

@@ -6,13 +6,15 @@
     {% for animal in animaux %}
         <div class="row align-items-center">
             <div class="col-2 text-center">
-                <img src="{{ asset('images/' ~ animal.image) }}" alt="image d'un
-                                                                              animal">
+                <a href="{{ path("afficher_animal",{'id':animal.id}) }}"><img class="img-fluid"
+                            src="{{ asset('images/' ~ animal.image) }}" alt="image d'un animal"></a>
             </div>
             <div class="col-auto">
                 <h2>{{ animal.nom }}</h2>
                 <div>{{ animal.description }}</div>
+                <div><a href="{{ path("afficher_famille",{'id':animal.famille.id}) }}" class="btn btn-primary">{{animal.famille.libelle }}</a></div>
             </div>
         </div>
+        <hr>
     {% endfor %}
 {% endblock %}
